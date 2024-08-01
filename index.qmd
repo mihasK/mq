@@ -1,5 +1,5 @@
 ---
-title: "mq-blog"
+title: "Notes on job-related topics"
 listing:
   contents: posts
   sort: "date desc"
