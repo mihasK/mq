@@ -6,3 +6,7 @@ preview:
 
 publish:
 	quarto publish gh-pages
+
+draft: # param n=
+	mkdir posts/$(n) && \
+	cp -n _examples/new_draft.ipynb posts/$(n)/$(n).ipynb
