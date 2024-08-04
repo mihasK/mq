@@ -33,7 +33,9 @@ $$
 :::
 
 
-### A property of sum of squares
+# Variance decomposition
+
+## A property of sum of squares
 
 <!-- \set{x_i \mid 1<=i<=n} -->
 
@@ -86,7 +88,7 @@ This way of thinking leads to understanding of physics concepts of center of mas
 
 
 
-### Variance
+## Variance
 
 Let's finally throw off the masks: we're here not to talk about some abstract numbers.
 The set $X$ is called a sample, sum of squares is **second moment about zero**,
@@ -97,7 +99,7 @@ $$ {#eq-def-var-sample}
 
 ::: {.callout-note}
 Term variance is a bit overloaded. Here we're talking about **sample variance**, 
-applicable to just a set of numbers (sample). Additionally, there's a theoretical variance of probability distribution. Of course their are tightly related.
+applicable to just a set of numbers (sample). Additionally, there's a theoretical variance of probability distribution. Of course their are tightly related. You can always approximate (estimate) distribution variance from sample (of size going to infinity, if needed).
 :::
 
 Let's introduce the following notation for the mean of any set $X$: 
@@ -127,7 +129,7 @@ $$
 $${#eq-var-calc}
 
 
-### Sample variance decomposition
+## Sample variance decomposition
 
 Now, we're ready to meet our main guest, also know as **law of total variance**
 Let's start with the case of finite sample $Y$, and apply the same idea to random variables afterwards.
@@ -137,7 +139,7 @@ For simplicity, let's consider the case of two groups $A=\set{a_i}$ and $B=\set{
 so that $Y = A \cup B$ has the size $n = n_a + n_b$.
 Then, for the total sum of squares:
 $$
-\sum_{Y}{y_i^2} = \sum{a_i}^2 + \sum{b_i}^2
+\sum_{i=1}^{n}{y_i^2} = \sum_{i=1}^{n_a}{a_i}^2 + \sum_{i=1}^{n_b}{b_i}^2
 $$
 
 Now for each group we can recalculate the sum of squares with respect to the group center.
@@ -160,11 +162,18 @@ $${#eq-var-dec-sample}
 where $p_a = \frac{n_a}{n}$ means share of group A in Y, and the last term means a variance of the sample containing $n_a$ elements $\mean{A}$ and $n_b$ elements $\mean{B}$.
 
 **This is an essence of variance decomposition**: if you split all your sample into several groups,
-total variance decomposes into the weighted average of variances of groups, 
+total variance decomposes into the weighted average of variances of (inside) groups, 
 plus the variance of their centers, again weighted accordinally to group sizes.
+Weights are proportional to the sizes of groups.
 
 
-### Distribution vs sample variance
+::: {.callout-note}
+Arithmetic mean (expectation, first moment) behaves in a similar (even simpler) way.
+Total mean is a weigthed mean of subgroups' centers (means).
+In case of variation, there's an additional component --- (weighted)  average of inside-group variations.
+:::
+
+## Distribution vs sample variance
 
 In case of variance of random variables,
 we should consider joint probability distribution for $Y$ and $X$.
@@ -183,14 +192,14 @@ But it requires some explanation how to read conditional expectation and varianc
 E.g. term $\Var{Y \vert X}$ means a random variable, taking value of $\Var{Y \vert X =x_1}$ with probability $P(X=x_1)$, ..., etc. Then, expectation for this variable gives the value of first term - **unexplained variance**. The second term is called **explained variance**
 
 
-### Explained and unexplained components
+## Explained and unexplained components
 
 Why their are called this way?
 Imaging you're trying to predict $Y$ from observed value of $X$ (which is called).
 
 For each $x$, you have uncertainty for $Y$ defined by conditional distribution $P(Y \vert X=x)$.
 On average (expection over $X$), you will have variance of $\Exp{\Var{Y \vert X}}$,
-which can't be reduced (this is why it's also called **irreducible variance**).
+which can't be reduced (this is why it's also called **irreducible variance**, or **residual**).
 The best you can do is to choose expectation $\Exp{Y \vert X=x}$ as your prediction
 (essentially, a center of the group in terms of @eq-var-dec-sample).
 And if you take the variance of those conditional expectaions, you get the part of variance **explained** by $X$.
@@ -198,10 +207,36 @@ And if you take the variance of those conditional expectaions, you get the part 
 The bigger the difference between "centers" of groups defined by $X$, the better $X$ explains (predicts) $Y$.
 
 
+## N-dimensions
 
-### Coefficient of determination
+https://en.wikipedia.org/wiki/Multivariate_analysis_of_variance
+
+
+# Applications
+
+Turns out, once you grasp this behaviour of sum of variance,
+or more broadly - of sum of squares, you'll gain insights into vast amount of things happening in statistics and machine learning.
+Here is an incomplete list of tools based on the decomposition of variance.
+Initial settings and definitions could be different, but in essence it's just a variance (or sum of squares) decomposition everywhere.
+
+
+## Coefficient of determination
+
+https://en.wikipedia.org/wiki/Lack-of-fit_sum_of_squares
 
 Let's consider the case of predicting (**regression**) $Y$ by some features(explanatory variables).
+
+https://en.wikipedia.org/wiki/Partition_of_sums_of_squares
+
+For wide classes of linear models, the total sum of squares equals the explained sum of squares plus the residual sum of squares. For proof of this in the multivariate OLS case, see partitioning in the general OLS model.
+
+
+## Anova
+
+## Linear discriminant analysis
+
+
+## PCA
 
 
 
