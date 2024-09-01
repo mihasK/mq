@@ -3,6 +3,8 @@ project:
 
 website:
   title: "Mike's blog"
+  google-analytics: "{{< env GOOGLE_ANALYTICS_ID >}}"
+  cookie-consent: true
   navbar:
     right:
       - about.qmd
@@ -15,6 +17,7 @@ format:
     # theme: cosmo
     theme: simplex
     css: styles.css
+    toc: true
 
 
 
