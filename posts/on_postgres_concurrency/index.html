@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-07-31">
+<meta name="dcterms.date" content="2024-09-01">
 
 <title>On Postgres Concurrency – Mike's blog</title>
 <style>
@@ -190,7 +190,7 @@ cookieconsent.run({
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">July 31, 2024</p>
+        <p class="date">September 1, 2024</p>
       </div>
     </div>
     
@@ -589,8 +589,8 @@ Note
 <section id="serializable-s---too-safe-to-be-true" class="level1 page-columns page-full" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> Serializable (S) - too safe to be true</h1>
 <p>Standard formulation: level S guarantees that if transaction commit is accepted, <strong>there’s an order of transactions which gives the same result</strong> if they are running one by one, serially. Which basically means - you can think there’s no concurrency at all, no concurrency anomalies could happen<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Of course - for those transactions which were commited. Basically, the only concurrency anomaly you can face - commit rejected.</p></div><div id="fn4"><p><sup>4</sup>&nbsp;Which is called <strong>predicate locks</strong></p></div></div><p>But I like to think about this level as an addon to RR, which adds <strong>an additional optimistic locks on read queries</strong><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. In addition to checking for the records you modify (which is available on RR too), you check for all the records you have read or could have read, in case they were already commited.</p>
-<p>If you read some set of records in the beginning of transaction, and before your commit some other transaction did something which changes the result of the same query if it would be repeated now - your transaction will be rejected. It makes a lot of sense - you logic could depend on previous read results, and your actions would be different now, when data was changed.</p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Of course - for those transactions which were commited. Basically, the only concurrency anomaly you can face - commit rejected.</p></div><div id="fn4"><p><sup>4</sup>&nbsp;Which is called <strong>predicate locks</strong></p></div></div><p>But I like to think about this level as an addon to RR, which adds <strong>an additional optimistic locks on read queries (and bulk update) </strong><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. In addition to checking for the records you modify (which is available on RR too), you check for all the records you have read or could have read, in case they were already commited.</p>
+<p>If you read some set of records in the beginning of transaction, and before your commit some other transaction did something which changes the result of the same query if it would be repeated now - your transaction will be rejected. It makes a lot of sense - your logic could depend on previous read results, and your actions would be different now, when data was changed.</p>
 <p>Let’s look how it solves previous example of checking for table-wide uniqueness:</p>
 <div id="cell-31" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>clean_table()</span>
@@ -1196,7 +1196,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":false,"descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

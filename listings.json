@@ -3,6 +3,7 @@
     "listing": "/index.html",
     "items": [
       "/posts/on_postgres_concurrency/index.html",
+      "/posts/just-make/just-make.html",
       "/posts/compare_df_pandas/index.html"
     ]
   }
