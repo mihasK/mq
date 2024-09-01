@@ -222,6 +222,9 @@ Initial settings and definitions could be different, but in essence it's just a 
 
 ## Coefficient of determination
 
+https://www.r-bloggers.com/2021/03/the-r-squared-and-nonlinear-regression-a-difficult-marriage/
+
+
 https://en.wikipedia.org/wiki/Lack-of-fit_sum_of_squares
 
 Let's consider the case of predicting (**regression**) $Y$ by some features(explanatory variables).
