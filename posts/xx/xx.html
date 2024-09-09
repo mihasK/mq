@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-06-14">
+<meta name="dcterms.date" content="2023-06-14">
 
-<title>Just Make – Mike's blog</title>
+<title>New Draft – Mike's blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -172,9 +138,10 @@ cookieconsent.run({
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Just Make</h1>
+      <h1 class="title">New Draft</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">smalltips</div>
+                <div class="quarto-category">draft</div>
+                <div class="quarto-category">new</div>
               </div>
                   </div>
   </div>
@@ -186,7 +153,7 @@ cookieconsent.run({
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">June 14, 2024</p>
+        <p class="date">June 14, 2023</p>
       </div>
     </div>
     
@@ -196,23 +163,15 @@ cookieconsent.run({
   <div>
     <div class="abstract">
       <div class="block-title">Abstract</div>
-      <p><strong>Make</strong> is good, but there’s <strong>just</strong> a better alternative.</p>
+      <p>Several misconceptions presented, including true ones</p>
     </div>
   </div>
   
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#makefile" id="toc-makefile" class="nav-link active" data-scroll-target="#makefile">Makefile</a></li>
-  <li><a href="#just" id="toc-just" class="nav-link" data-scroll-target="#just">Just</a></li>
-  <li><a href="#install-macos" id="toc-install-macos" class="nav-link" data-scroll-target="#install-macos">Install (MacOS)</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -221,135 +180,8 @@ cookieconsent.run({
 
 
 
-<p>Usage of Makefiles have gone beyond original purpose of compilation and building of systems in C language.</p>
-<p>Many people use them for running arbitrary commands like setup, linting, formatting, etc., in projects built on different languages and stacks, inlcuding Python. For that purpose <code>Makefile</code> works fine, but has quite a lot of quirks related to its original purpose. Recently a better substitute for <code>Makefile</code> for broader use cases appeared - it is called <a href="https://github.com/casey/just">Just</a>.</p>
-<p>I’ve found that tool is very useful and decided to switch to it in all my projects.</p>
-<section id="makefile" class="level2">
-<h2 class="anchored" data-anchor-id="makefile">Makefile</h2>
-<p>But first let’s recall how a Makefile is typically used. This is an example of a Makefile I’m using for one of my projects:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ot">.PHONY:</span><span class="dt"> *</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dv">activate:</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>poetry shell</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dv">lint:</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>poetry run ruff .</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="dv">watchmedo:</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>pip install watchdog</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="dv">celery:</span><span class="dt"> watchmedo</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>watchmedo auto-restart --directory=./ --pattern=*.py --recursive -- celery -A my-project worker  -l INFO</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>You can see how it simplifies your life by creating simple shortcuts of bash commands. It even allows to set dependencies between commands, like in the example above where <code>celery</code> task is not run until <code>watchdog</code> is installed.</p>
-<div class="callout callout-style-simple callout-note callout-titled" title="What is .PHONY?">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-What is .PHONY?
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>But you can already notice some strange things: what is that <code>.PHONY</code> thing? And why does it have <code>*</code> in it? The key is rooted in the original purpose of Makefiles - to compile C programs. When you build some C program, you need to specify all the files that are needed for building. So you write smth like this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">prog:</span><span class="dt"> file1.o file2.o file3.o</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>gcc -o prog file1.o file2.o file3.o</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The case is, each building target is always a file or directory. If dependency target file already exists - you don’t need to rerun corresponding command, and make skips it.</p>
-<p>But when you’re using Makefile just for arbitrary commandline shortcuts, this behavior is usually unwanted.</p>
-<p><code>.PHONY</code> is used to tell <code>make</code> that targets listed there are not real files, but just labels. So <code>make lint</code> will always run <code>lint</code> command, even if there is a file named <code>lint</code> in the current directory.</p>
-</div>
-</div>
-</div>
-<p>More information on this and other tips of adapting Makefiles for Python projects you can find <a href="https://blog.mathieu-leplatre.info/tips-for-your-makefile-with-python.html">here</a>.</p>
-<p>Another example of a bit more advanced Makefile target with parameter:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">list_all_tests:</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>find . -name <span class="st">'*.py'</span> -not -path <span class="st">"*venv*"</span> | grep test | sed <span class="st">'s|\.py||g'</span> | sed <span class="st">'s|^\./||g'</span> | sed <span class="st">'s|/|.|g'</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">test:</span><span class="dt"> </span><span class="co"># it has a parameter s</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>make list_all_tests | grep <span class="ch">$(</span><span class="dt">s</span><span class="ch">)</span> | xargs --no-run-if-empty --verbose ./manage.py test --keepdb --failfast</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>As you can see, <code>test</code> <strong>target has a parameter</strong> <code>s</code>, which is a substring of the test name you want to run. E.g., in order to find and run all test related to authentication, assuming their filenames contain <code>auth</code>, you need to call <code>make test s=auth</code>.</p>
-</section>
-<section id="just" class="level2">
-<h2 class="anchored" data-anchor-id="just">Just</h2>
-<p>Just is a simpler and more modern alternative to Make. It also avoids some of its pitfalls, making it useful for a broader range of tasks. But basic syntax is the same, you can just copy it from <code>Makefile</code> to <code>justfile</code> and simple commands will work out of the box.</p>
-<p>It has a good <a href="https://just.systems/man/en/">documentaion</a>.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Parameters
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<p>E.g., this is how to use parameters for our test example above:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">list_all_tests:</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>find . -name <span class="st">'*.py'</span> -not -path <span class="st">"*venv*"</span> | grep test | sed <span class="st">'s|\.py||g'</span> | sed <span class="st">'s|^\./||g'</span> | sed <span class="st">'s|/|.|g'</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dv">test substring:</span><span class="dt"> </span><span class="co"># it has a parameter substring</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>make list_all_tests | grep {{substring}} | xargs --no-run-if-empty --verbose ./manage.py test --keepdb --failfast</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>And to run it you need to call <code>just test auth</code>. Note, that you should not write the name of the parameter when invoking the command, which would be annoying in case of full parameter name.</p>
-<p>Parameters can have <strong>default values</strong>. This is how I use it to create new draft posts:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">default_ext</span> <span class="ch">:=</span><span class="st"> 'ipynb'</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">draft name ext=default_ext:</span><span class="dt"> </span><span class="co"># just first param </span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>mkdir posts/{{name}} &amp;&amp; \</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    cp -n _examples/new_draft.{{ext}} posts/{{name}}/{{name}}.{{ext}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>And to run it:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">just</span> draft my-new-post <span class="co"># default extension is ipynb</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">just</span> draft my-new-post md <span class="co"># markdown is used</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Env files
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<p>Another perk of Just is that it allows to use variables from <code>.env</code> file:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode makefile code-with-copy"><code class="sourceCode makefile"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">set dotenv-filename :</span><span class="dt">= ".env"</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dv">print_region:</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>echo <span class="ch">$A</span>WS_REGION</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="dv">list_buckets:</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>aws s3 ls   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="install-macos" class="level2">
-<h2 class="anchored" data-anchor-id="install-macos">Install (MacOS)</h2>
-<p>It’s available on most of the platforms, I’ll just describe my case. The first is to install on your system, and it’s available via Homebrew:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install just</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then you want have autocompletion for <code>just</code> in your shell. In case of <code>zsh</code> on MacOS I needed to follow <a href="https://stackoverflow.com/questions/77392573/getting-autocomplete-with-zsh-and-justfile-homebrew">this instruction</a> add to my <code>~/.zshrc</code> file:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Init Homebrew, which adds environment variables</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">eval</span> <span class="st">"</span><span class="va">$(</span><span class="ex">brew</span> shellenv<span class="va">)</span><span class="st">"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="va">fpath</span><span class="op">=</span><span class="va">($HOMEBREW_PREFIX</span>/share/zsh/site-functions <span class="va">$fpath)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>in the beggining of the file.</p>
-<p>Then you need to restart your terminal or run <code>source .zshrc</code> and you should be ready to go.</p>
-<p>Also, I’m using VSCode, and extensions are available for Just as well.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -444,7 +276,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/mihasK\.github\.io\/mq\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
