@@ -224,7 +224,7 @@ cookieconsent.run({
 <h1>Generate SSH key</h1>
 <p>Assuming you have OpenSSH installed, either on Linux or MacOS. Basically, that’s all you need to set-up secure ssh connection to your Github/Gitlab/Bitbucket repositories:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/.ssh</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-b</span> 4096-f MY_GITLAB  <span class="at">-C</span> <span class="st">"MY@EMAIL.com"</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-b</span> 4096 <span class="at">-f</span> MY_GITLAB <span class="co"># optional:  -C "MY@EMAIL.com" </span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-add</span> MY_GITLAB  <span class="co"># this file is created in the same folder, along with MY_GITLAB.pub</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Final step is to take public key stored in <code>~/.ssh/MY_GITLAB.pub</code> and paste it into Github/Gitlab/Bitbucket settings.</p>
 </section>
