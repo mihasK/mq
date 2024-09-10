@@ -13,7 +13,7 @@ Basically, that's all you need to set-up secure ssh connection to your Github/Gi
 
 ```bash
 cd ~/.ssh
-ssh-keygen -t ed25519 -b 4096-f MY_GITLAB  -C "MY@EMAIL.com" 
+ssh-keygen -t ed25519 -b 4096 -f MY_GITLAB # optional:  -C "MY@EMAIL.com" 
 ssh-add MY_GITLAB  # this file is created in the same folder, along with MY_GITLAB.pub
 ```
 
