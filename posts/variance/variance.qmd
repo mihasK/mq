@@ -222,6 +222,8 @@ Initial settings and definitions could be different, but in essence it's just a 
 
 ## Coefficient of determination
 
+https://en.wikipedia.org/wiki/Coefficient_of_determination#Adjusted_R2
+
 https://www.r-bloggers.com/2021/03/the-r-squared-and-nonlinear-regression-a-difficult-marriage/
 
 
