@@ -15,4 +15,4 @@ draft name ext=default_ext: # just first param
 	cp -n _examples/new_draft.{{ext}} posts/{{name}}/{{name}}.{{ext}}
 
 print_var:
-	echo $AWS_ACCESS_KEY_ID
+	echo $PWD
