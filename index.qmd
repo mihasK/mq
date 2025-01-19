@@ -1,5 +1,5 @@
 ---
-title: "Personal notes on common topics"
+title: "Notes for myself"
 listing:
   contents: posts
   sort: "date desc"

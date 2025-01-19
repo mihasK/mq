@@ -1,3 +1,6 @@
+print_var:  # default command comees first (in case you just run `just`)
+	echo $PWD
+
 git-squash:
 	git reset $(git commit-tree HEAD^{tree} -m "A new start")
 
@@ -13,6 +16,3 @@ default_ext := 'ipynb'
 draft name ext=default_ext: # just first param 
 	mkdir posts/{{name}} && \
 	cp -n _examples/new_draft.{{ext}} posts/{{name}}/{{name}}.{{ext}}
-
-print_var:
-	echo $PWD
