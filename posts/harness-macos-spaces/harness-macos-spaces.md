@@ -27,12 +27,12 @@ All here is purely subjective, and based on my personal taste.
 
 In my mind I've separated applications into 2 types:
 
-1. All-spaces applications, such as Telegram or ChatGPT, which could be opened in any space. They are single-window applications (e.g. no reason to have several windows of chat application opened).
-2. Space-specific applications, such as VSCode or Google Chrome, which should be opened in a specific space (e.g. at work projects), and sticky to that space. They are typically multi-window applications.
+1. *Any-space applications*, such as Telegram or ChatGPT, which could be opened in any space. They are single-window applications (e.g. no reason to have several windows of chat application opened).
+2. *Space-specific applications*, such as VSCode or Google Chrome, which should be opened in a specific space (e.g. at work projects), and sticky to that space. They are typically multi-window applications.
 
 In the Dock you can configure how they are displayed across spaces (Desktops):
 
-* **All Desktops** - their single window will be opened always in your current space (for all-spaces applications).
+* **All Desktops** - their single window will be opened always in your current space (for any-space applications).
 * **None** - once you opened a new window, it will stay in this space (for space-specific applications).
 
 ![Dock spaces](./dock_spaces.png)
@@ -51,7 +51,7 @@ There're 2 solutions.
 
 ### Swith to app without window
 
-It works if you disabled "...Switch to a space with opened windows...". Btw, it's better to do this anyway, 
+It works if you disabled *"...Switch to a space with opened windows..."*. Btw, it's better to do this anyway, 
 unless you want to be randomly swithched from time to time🤕.
 
 ![Mission Control settings](./mission_control_settings.png)
@@ -98,9 +98,10 @@ At some point I've realized that slow spreading of windows when switching to spa
 macOS offers a ‘Reduce Motion’ setting that simplifies system animations, resulting in quicker transitions.
 
 Steps:
-1.	Open System Preferences and select Accessibility.
-2.	In the left sidebar, choose Display.
-3.	Check the box labeled Reduce Motion.
+
+1.	Open System Preferences and select **Accessibility**.
+2.	In the left sidebar, choose **Display**.
+3.	Check the box labeled **Reduce Motion**.
 
 ## Shortcuts for switching to a space by number
 
