@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/harness-macos-spaces/harness-macos-spaces.html",
       "/posts/ssh_key_add/ssh_key_add.html",
       "/posts/on_postgres_concurrency/index.html",
       "/posts/just-make/just-make.html",
