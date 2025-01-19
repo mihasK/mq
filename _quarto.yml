@@ -1,0 +1,23 @@
+project:
+  type: website
+
+website:
+  title: "Mike's blog"
+  google-analytics: "{{< env GOOGLE_ANALYTICS_ID >}}"
+  cookie-consent: true
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/
+      # - icon: twitter
+      #   href: https://twitter.com
+format:
+  html:
+    # theme: cosmo
+    theme: simplex
+    css: styles.css
+    toc: true
+
+
+

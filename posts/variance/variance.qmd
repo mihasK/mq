@@ -1,0 +1,249 @@
+---
+title: "Variance Decomposition - Small Equation With Big Impact"
+title-block-style: default
+title-block-banner: true
+#title-block-banner-color: magenta
+
+date: 2023-06-14
+#date-format: short
+
+categories: [draft,new]
+abstract: |
+  Several misconceptions presented,
+  including true ones
+
+draft: true
+image: genDalle.webp
+
+
+format: 
+  html:
+    toc: true
+---
+
+::: {.hidden}
+$$
+\newcommand{\foo}{E=mc^{2}}
+\newcommand{\def}{\stackrel{\text{def}}{=}}
+\newcommand{\Var}[1]{\mathbb{Var}[ #1 ]}
+\newcommand{\Exp}[1]{\mathbb{E}[ #1 ]}
+\newcommand{\mean}[1]{ \overline{#1}}
+\newcommand{\SS}[1]{ \textbf{SS} [ #1 ]}
+$$
+:::
+
+
+# Variance decomposition
+
+## A property of sum of squares
+
+<!-- \set{x_i \mid 1<=i<=n} -->
+
+Let's start from the most simple, elementary math observation:
+
+$$
+(\mu -\delta)^2 + (\mu + \delta)^2 = 2 \mu^2 + 2\delta^2,
+$$
+or 
+$$
+\frac{ (\mu -\delta)^2 + (\mu + \delta)^2 }{2} = \mu^2 + \delta^2.
+$$
+
+It means, average of squares of two numbers could be approximated by the squared average of the numbers: the first is always greater, and exact difference is $\delta^2$ (which is always non-negative).
+
+This easily generalizes to sets of arbitrary length.
+
+Let's introduce the following notation for the mean of any set $X$: 
+$$
+\mean{X} \def \frac{1}{n} \sum_{x_i \in X}{x_i}
+$$
+
+
+Consider a (multi)-set of real numbers $X = \set{ x_i \mid i=1..n }$, 
+and its arithmetic mean $\mean{X} = \frac{1}{n} \sum{x_i}$.
+
+We're interested in how the average sum of squares deviates from the square of the mean of elements.
+
+$$
+\sum{x_i^2} = \sum{ ( (x_i - \mean{X}) + \mean{X})^2 } = \sum{(x_i - \mean{X})^2} + 2\mean{X} \sum(x_i - \mean{X}) + n\mean{X}^2,
+$$
+and since the second term goes to zero, we conclude:
+$$
+\sum{x_i^2} = \sum{(x_i - \mean{X})^2}  + n \mean{X}^2
+$$ {#eq-sum-of-squares}
+.
+
+::: {.callout-note}
+Useful to reflect on this property a bit, and look at it from the following perspective. 
+Imagine the numbers are points on the axis, i.e. their position is defined with respect to the origin selected on the axis.
+We can choose different origins (i.e. translating the coordinates) and calculate sum of squares for each shift.
+Turns out, the minimal value of the sum will be when origin placed at the points average (**mass center**) - $\mean{X}$,
+in which case it equals $\sum{(x_i - \mean{X})^2}$. Then, if we translate coordinates by some shift $s$, the sum of squares increases exactly on $n s^2$.
+
+In similar way behaves arithmetic mean of the numbers: it equals $0$ if coordinates origin is place at center of mass, and if axis shifted to $s$, mean equals to the shift $s$.
+
+
+This way of thinking leads to understanding of physics concepts of center of mass and moment of inertia.
+:::
+
+
+
+## Variance
+
+Let's finally throw off the masks: we're here not to talk about some abstract numbers.
+The set $X$ is called a sample, sum of squares is **second moment about zero**,
+while the second central moment is called **variance**:
+$$
+\Var{X} \def \frac {\sum{ (x_i - \mean{X})^2 } } {n}
+$$ {#eq-def-var-sample}
+
+::: {.callout-note}
+Term variance is a bit overloaded. Here we're talking about **sample variance**, 
+applicable to just a set of numbers (sample). Additionally, there's a theoretical variance of probability distribution. Of course their are tightly related. You can always approximate (estimate) distribution variance from sample (of size going to infinity, if needed).
+:::
+
+Let's introduce the following notation for the mean of any set $X$: 
+$$
+\mean{X} \def \frac{1}{n} \sum_{x_i \in X}{x_i}
+$$
+
+
+From @eq-sum-of-squares, we have alternative way of calculating variance:
+
+$$
+\Var{X} = \mean{ \set{x_i^2} } - \mean{X}^2
+$$ {#eq-var-calc-sample}
+
+
+
+The same equation is translatable to variance of probability distributions.
+Let $X$ be a random variable. Then, theoretical variance of $X$ is 
+
+$$
+\Var{X} \def \Exp{(X - \Exp{X})^2}
+$$ {#eq-def-var}
+
+and analogue of @eq-var-calc-sample is
+$$
+\Var{X} = \Exp{X^2} - \Exp{X}^2
+$${#eq-var-calc}
+
+
+## Sample variance decomposition
+
+Now, we're ready to meet our main guest, also know as **law of total variance**
+Let's start with the case of finite sample $Y$, and apply the same idea to random variables afterwards.
+
+Imagine you split the sample into several groups.
+For simplicity, let's consider the case of two groups $A=\set{a_i}$ and $B=\set{b_i}$ of size $n_a$ and $n_b$ respectively, 
+so that $Y = A \cup B$ has the size $n = n_a + n_b$.
+Then, for the total sum of squares:
+$$
+\sum_{i=1}^{n}{y_i^2} = \sum_{i=1}^{n_a}{a_i}^2 + \sum_{i=1}^{n_b}{b_i}^2
+$$
+
+Now for each group we can recalculate the sum of squares with respect to the group center.
+E.g. for group A, according to @eq-sum-of-squares, we have:
+$$
+\sum{a_i}^2 = \sum(a_i - \mean{A})^{2} + n_a  \mean{A}^2 = n_a \Var{A} + n_a \mean{A}^2
+$$
+Finally, sum of squares
+
+$$
+\sum_{Y}{y_i^2} =  n_a \Var{A} +  n_b \Var{B} + n_a \mean{A}^2 + n_b \mean{B}^2,
+$$
+and variance of $Y$:
+
+$$
+\Var{Y} = \frac{1}{n} \sum_{Y}{y_i^2} - \mean{Y}^2 
+= p_a \Var{A} + p_b\Var{B} + \Var{\set{\mean{A}..., \mean{B}...}}
+$${#eq-var-dec-sample}
+,
+where $p_a = \frac{n_a}{n}$ means share of group A in Y, and the last term means a variance of the sample containing $n_a$ elements $\mean{A}$ and $n_b$ elements $\mean{B}$.
+
+**This is an essence of variance decomposition**: if you split all your sample into several groups,
+total variance decomposes into the weighted average of variances of (inside) groups, 
+plus the variance of their centers, again weighted accordinally to group sizes.
+Weights are proportional to the sizes of groups.
+
+
+::: {.callout-note}
+Arithmetic mean (expectation, first moment) behaves in a similar (even simpler) way.
+Total mean is a weigthed mean of subgroups' centers (means).
+In case of variation, there's an additional component --- (weighted)  average of inside-group variations.
+:::
+
+## Distribution vs sample variance
+
+In case of variance of random variables,
+we should consider joint probability distribution for $Y$ and $X$.
+Independent variable $X$ plays a role of group splitting considered in @eq-var-dec-sample:
+for each point $(y,x)$, the value $x$ defines a separate group (of "weight" $P(X=x)$).
+
+
+
+Corresponding formula looks more elegantly:
+
+$$
+\Var{Y} = \Exp{\Var{Y \vert X}} + \Var{ \Exp{Y \vert X} }
+$$
+
+But it requires some explanation how to read conditional expectation and variance.
+E.g. term $\Var{Y \vert X}$ means a random variable, taking value of $\Var{Y \vert X =x_1}$ with probability $P(X=x_1)$, ..., etc. Then, expectation for this variable gives the value of first term - **unexplained variance**. The second term is called **explained variance**
+
+
+## Explained and unexplained components
+
+Why their are called this way?
+Imaging you're trying to predict $Y$ from observed value of $X$ (which is called).
+
+For each $x$, you have uncertainty for $Y$ defined by conditional distribution $P(Y \vert X=x)$.
+On average (expection over $X$), you will have variance of $\Exp{\Var{Y \vert X}}$,
+which can't be reduced (this is why it's also called **irreducible variance**, or **residual**).
+The best you can do is to choose expectation $\Exp{Y \vert X=x}$ as your prediction
+(essentially, a center of the group in terms of @eq-var-dec-sample).
+And if you take the variance of those conditional expectaions, you get the part of variance **explained** by $X$.
+
+The bigger the difference between "centers" of groups defined by $X$, the better $X$ explains (predicts) $Y$.
+
+
+## N-dimensions
+
+https://en.wikipedia.org/wiki/Multivariate_analysis_of_variance
+
+
+# Applications
+
+Turns out, once you grasp this behaviour of sum of variance,
+or more broadly - of sum of squares, you'll gain insights into vast amount of things happening in statistics and machine learning.
+Here is an incomplete list of tools based on the decomposition of variance.
+Initial settings and definitions could be different, but in essence it's just a variance (or sum of squares) decomposition everywhere.
+
+
+## Coefficient of determination
+
+https://en.wikipedia.org/wiki/Coefficient_of_determination#Adjusted_R2
+
+https://www.r-bloggers.com/2021/03/the-r-squared-and-nonlinear-regression-a-difficult-marriage/
+
+
+https://en.wikipedia.org/wiki/Lack-of-fit_sum_of_squares
+
+Let's consider the case of predicting (**regression**) $Y$ by some features(explanatory variables).
+
+https://en.wikipedia.org/wiki/Partition_of_sums_of_squares
+
+For wide classes of linear models, the total sum of squares equals the explained sum of squares plus the residual sum of squares. For proof of this in the multivariate OLS case, see partitioning in the general OLS model.
+
+
+## Anova
+
+## Linear discriminant analysis
+
+
+## PCA
+
+
+
+
+
