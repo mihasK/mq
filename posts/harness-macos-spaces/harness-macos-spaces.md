@@ -1,7 +1,7 @@
 ---
 title: "Harness MacOS Spaces"
 date: 2025-01-17
-categories: [draft,new]
+categories: [macos]
 abstract: |
   Recipe for using MacOS Spaces.
 

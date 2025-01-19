@@ -33,3 +33,5 @@ ssh -A user@remote_server
 In this connection mode, your local ssh key will be used to authenticate you on remote server, and `git clone` will just work there.
 
 But, be aware of security implications. Good article on that topic is [here](https://smallstep.com/blog/ssh-agent-explained/).
+
+Another good article is [here](https://rednafi.com/misc/ssh_saga/).
