@@ -111,3 +111,7 @@ To enable this, go to System Preferences -> Keyboard -> Shortcuts -> Mission Con
 
 This way you can remember that you have a work open at space 1, some hobby project at space 2, etc., and quickly switch to them. Without annoying animation!
 
+
+## Another macos tools
+* https://github.com/jordanbaird/Ice
+
