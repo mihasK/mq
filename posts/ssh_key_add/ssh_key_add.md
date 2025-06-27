@@ -13,8 +13,9 @@ Basically, that's all you need to set-up secure ssh connection to your Github/Gi
 
 ```bash
 cd ~/.ssh
-ssh-keygen -t ed25519 -b 4096 -f MY_GITLAB # optional:  -C "MY@EMAIL.com" 
-ssh-add MY_GITLAB  # this file is created in the same folder, along with MY_GITLAB.pub
+ssh-keygen -t ed25519 -b 4096 -f MY_BB # optional:  -C "MY@EMAIL.com" 
+ssh-add MY_BB  # this file is created in the same folder, along with MY_GITLAB.pub
+cat MY_BB.pub | pbcopy  # copy public key
 ```
 
 Final step is to take public key stored in `~/.ssh/MY_GITLAB.pub` and paste it into Github/Gitlab/Bitbucket settings.
